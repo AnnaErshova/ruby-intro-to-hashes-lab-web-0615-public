@@ -18,32 +18,7 @@ describe "working with hashes" do
 end
 
 describe "building a multidimensional monopoly hash" do
-  monopoly = {
-    :railsroads => {
-      :pieces => 4,
-      :names => {
-        :reading_railroad => {
-          "mortgage_value" => "100"
-          },
-        :pennsylvania_railroad => {
-          "mortgage_value" => "200"
-          },
-        :b_and_o_railroad => {
-          "mortgage_value" => "400"
-          },
-        :shortline => {
-          "mortgage_value" => "800"
-        }
-      },
-      "rent_in_dollars" => {
-        :one_piece_owned => 25,
-        :two_pieces_owned => 50,
-        :three_pieces_owned => 100,
-        :four_pieces_owned => 200
-      }
-    }
-  }
-
+  monopoly = {}
 
   context "adding a key-value pair to the top level of the hash " do
     it "creates a key (a symbol railsroads) whose value is an empty hash" do
