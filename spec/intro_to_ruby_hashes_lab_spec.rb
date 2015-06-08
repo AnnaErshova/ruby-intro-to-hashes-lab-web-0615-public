@@ -18,7 +18,32 @@ describe "working with hashes" do
 end
 
 describe "building a multidimensional monopoly hash" do
-  monopoly = {}
+  monopoly = {
+    :railsroads => {
+      :pieces => 4,
+      :names => {
+        :reading_railroad => {
+          "mortgage_value" => "100"
+          },
+        :pennsylvania_railroad => {
+          "mortgage_value" => "200"
+          },
+        :b_and_o_railroad => {
+          "mortgage_value" => "400"
+          },
+        :shortline => {
+          "mortgage_value" => "800"
+        }
+      },
+      "rent_in_dollars" => {
+        :one_piece_owned => 25,
+        :two_pieces_owned => 50,
+        :three_pieces_owned => 100,
+        :four_pieces_owned => 200
+      }
+    }
+  }
+
 
   context "adding a key-value pair to the top level of the hash " do
     it "creates a key (a symbol railsroads) whose value is an empty hash" do
@@ -27,6 +52,7 @@ describe "building a multidimensional monopoly hash" do
       # monopoly = {:rails => {} }
       # if you need help, read the section on Common Uses¶ in http://ruby-doc.org/core-2.1.3/Hash.html
       monopoly[:rails] = {} # can we use create here?
+      # or monopoly = {:railsroads => {}}
       expect(monopoly.keys.count).to eq(1)
       expect(monopoly.values).to match_array([{}])
     end
@@ -126,7 +152,7 @@ describe "building a multidimensional monopoly hash" do
         expect(monopoly.values[0][:names].values[3]).to eq({})
       end
 
-      # the top one is the problem
+      # inserting a string vs. a symbol -- different syntax
       context "adding key-value pairs to the fourth-level of the hash" do
         it "sets the 1st key of reading_railroad hash to a string mortgage_value whose value is a string $100" do
           monopoly[:rails] = {:pieces => 4, :names => {:reading_railroad => {"mortgage_value" => "$100"}, :pennsylvania_railroad => {}, :b_and_o_railroad => {}, :shortline => {}},"rent_in_dollars" => {:one_piece_owned => 25, :two_pieces_owned => 50, :three_pieces_owned => 100, :four_pieces_owned => 200}}
